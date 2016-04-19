@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.dynatrace.diagnostics.sdk
+Bundle-Vendor: Compuware Corp
+Bundle-ClassPath: .,lib/commons-io-2.4.jar
+Bundle-Version: 0.9.2
+Bundle-Name: MeasureAvailabilityMonitor
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.dynatrace.diagnostics.plugin.MeasureAvailabil
+ ityMonitor;singleton:=true
+

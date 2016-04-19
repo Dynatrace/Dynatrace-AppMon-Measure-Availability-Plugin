@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 5.5.0 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.dynatrace.diagnostics.plugin.MeasureAvailabilityMonitor" name="MeasureAvailabilityMonitor">
+    <information>
+      <category value="" />
+      <displayname value="Measure Availability Monitor Plugin" />
+      <description value="Measure Availability Monitor plugin monitors measures and report if they are not populated" />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="measures" label="measures" type="string" description="semicolon-separated list of measures that will be monitored" default="" multiline="false" />
+      <property key="prefix" label="prefix" type="string" description="Prefix which will be applied to each measure from the measures' list" default="" multiline="false" />
+      <property key="suffix" label="suffix" type="string" description="Suffix which will be applied to the each measure from the measures' list" default="" multiline="false" />
+      <property key="availableValue" label="available value" type="long" description="Value which will be used to show that app/site is available" default="1" />
+      <property key="unavailableValue" label="unavailable value" type="long" description="Value which will be used to show that app/site is not available" default="0" />
+      <!--<property key="dthost" label="dynaTrace server" type="string" description="dynaTrace server DNS name or IP address" default="localhost" multiline="false" />-->
+      <property key="dtport" label="REST port" type="long" description="HTTP port of your dT server (will be used as target for REST call)" default="8020" />
+      <property key="dashboard" label="dashboard" type="string" description="dashboard name which is used to get report in the xml format" default="myDashboard" multiline="false" />
+      <!--<property key="uri" label="uri" type="string" description="URI of the dashboard" default="" multiline="false" />-->
+      <property key="user" label="user" type="string" description="User which will be used to get dahsboard" default="admin" multiline="false" />
+      <property key="password" label="password" type="password" description="password of the user which will be used to getdashboard through the REST interface" default="admin" />
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitor" id="com.dynatrace.diagnostics.plugin.MeasureAvailabilityMonitor.monitor" name="MeasureAvailabilityMonitor">
+    <plugin configid="com.dynatrace.diagnostics.plugin.MeasureAvailabilityMonitor" class="com.dynatrace.diagnostics.plugin.availabilitycheck.MeasureAvailabilityMonitor" />
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.diagnostics.plugin.MeasureAvailabilityMonitor.metricgroup1" name="AvailabilityMetricGroup">
+    <metricgroup monitorid="com.dynatrace.diagnostics.plugin.MeasureAvailabilityMonitor.monitor">
+      <metric name="Availability" unit="number" description="Availability metric represents if measure is available. It returns or available or unavailable value depending on measure availability." />
+    </metricgroup>
+  </extension>
+</plugin>
+
